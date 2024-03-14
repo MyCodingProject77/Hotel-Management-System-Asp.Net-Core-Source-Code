@@ -1,0 +1,97 @@
+ 
+
+       Packages to Install
+          Microsoft.Entity.Framework Core
+          Microsoft.Entity.Framework Core.SqlServer
+          Microsoft Entity Framework Core.Tools
+
+
+
+      Define the connectionstring in appsettings.json
+
+
+      "DefaultConnection": "Server=DESKTOP-HEEKBHE\\SQLEXPRESS;Database=HotelDb;Trusted_Connection=True;TrustServerCertificate=True"
+
+
+      GuestsDbContext Class 
+
+
+     public class GuestsDbContext: DbContext
+{
+    public GuestsDbContext(DbContextOptions<GuestsDbContext> options)
+        : base(options)
+    {
+
+    }
+
+    public DbSet<Guests> Guest { get; set; }
+}
+
+
+
+
+    RoomsDbContext Class 
+
+    public class RoomsDbContext: DbContext
+{
+    public RoomsDbContext(DbContextOptions<RoomsDbContext> choices)
+        : base(choices)
+    {
+
+    }
+
+    public DbSet<Rooms> Room { get; set; }
+}
+
+
+     BookingsDbContext
+
+     public class BookingsDbContext: DbContext
+{
+    public BookingsDbContext(DbContextOptions<BookingsDbContext> actions)
+        : base(actions)
+    {
+
+    }
+
+    public DbSet<Bookings> Booking { get; set; }
+}
+
+
+
+  
+
+   Registering the dbcontext classess in program.cs
+
+
+
+   builder.Services.AddDbContext<GuestsDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
+
+builder.Services.AddDbContext<RoomsDbContext>(choices =>
+{
+    choices.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
+
+builder.Services.AddDbContext<BookingsDbContext>(actions =>
+{
+    actions.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
+
+builder.Services.AddDbContext<PaymentsDbContext>(lists =>
+{
+    lists.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
+
+
+
+
+  
+     
+
+    
+
+
+   
